@@ -1,0 +1,8 @@
+CodeBase/npm_modules/
+CodeBase/bower_components/
+platforms/
+CodeBase/dist
+*.tmp
+*.sass-cache
+*.log
+
