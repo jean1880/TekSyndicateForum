@@ -8,14 +8,11 @@
  * Factory in the tekForumApp.
  */
 angular.module('tekForumApp')
-    .factory('FactoryCategory', function ($http) {
-        var config = {
-            withCredentials: true
-        };
+    .factory('FactoryCategory', function ($http, ServerAddress) {
         // Public API here
         return {
             get: function () {
-                return $http.get('https://forum.teksyndicate.com/categories.json', config);
+                return $http.get(ServerAddress + 'categories.json');
             }
         };
     });

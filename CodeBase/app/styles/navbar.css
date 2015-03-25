@@ -5,3 +5,8 @@
 .no-padding {
     padding: 0;
 }
+
+.img-brand {
+    width: auto;
+    height: 50px;
+}

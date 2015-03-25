@@ -1,25 +1,38 @@
-<div class="jumbotron">
-    <h1>'Allo, 'Allo!</h1>
-    <p class="lead">
-        <img src="images/yeoman.png" alt="I'm Yeoman">
-        <br> Always a pleasure scaffolding your apps.
-    </p>
-    <p><a class="btn btn-lg btn-success" ng-href="#/">Splendid!<span class="glyphicon glyphicon-ok"></span></a>
-    </p>
-</div>
-
-<div class="row marketing">
-    <h4>HTML5 Boilerplate</h4>
-    <p>
-        HTML5 Boilerplate is a professional front-end template for building fast, robust, and adaptable web apps or sites.
-    </p>
-
-    <h4>Angular</h4>
-    <p>
-        AngularJS is a toolset for building the framework most suited to your application development.
-    </p>
-    <i class="fa fa-heartbeat"></i>
-
-    <h4>Karma</h4>tek
-    <p>Spectacular Test Runner for JavaScript.</p>
+<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+    <div class="panel panel-default">
+        <div class="panel-heading" role="tab" id="headingOne">
+            <a class="panel-title" data-toggle="collapse" data-parent="#accordion" data-target="#accordianCategories" aria-expanded="true" aria-controls="accordianCategories">
+                <h4 class="panel-title">Categories</h4>
+            </a>
+        </div>
+        <div id="accordianCategories" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="Categories">
+            <div class="panel-body">
+                <ul class="list-group">
+                    <li class="list-group-item" ng-if="categoryList" ng-repeat="category in categoryList">
+                        <a href="{{category.topic_url}}">
+                            <h4>{{category.name}}</h4>
+                            <p>{{category.description_text}}</p>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-heading" role="tab" id="headingOne">
+            <a class="panel-title" data-toggle="collapse" data-parent="#accordion" data-target="#collapseLatst" aria-expanded="true" aria-controls="collapseOne">
+                <h4 class="panel-title">Latest</h4>
+            </a>
+        </div>
+        <div id="collapseLatst" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+            <ul class="list-group">
+                <li class="list-group-item" ng-if="topicList" ng-repeat="topic in topicList">
+                    <a href="{{category.topic_url}}">
+                        <h4>{{topic.title}}</h4>
+                        <p>{{topic.excerpt}}</p>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
 </div>

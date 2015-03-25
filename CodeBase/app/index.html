@@ -16,6 +16,7 @@
     <!-- build:css(.tmp) styles/main.css -->
     <link rel="stylesheet" href="styles/bootstrap.css">
     <link rel="stylesheet" href="styles/navbar.css">
+    <link rel="stylesheet" href="styles/main.css">
     <!-- endbuild -->
 </head>
 
@@ -27,44 +28,59 @@
     <!-- Add your site or application content here -->
     <nav class="navbar navbar-inverse navbar-fixed-top">
         <div class="container-fluid">
-            <!-- Brand and toggle get grouped for better mobile display -->
-            <a class="navbar-brand no-padding col-xs-6" href="#"><img class="img" src="images/dark-logo.png" />
-            </a>
-
-            <!-- Collect the nav links, forms, and other content for toggling -->
-            <ul class="nav navbar-nav pull-right col-xs-6">
-                <li class="dropdown col-xs-3 col-sm-1 pull-right">
-                    <a href="#/" class="dropdown-toggle" role="button" aria-expanded="false"><i class="fa fa-bars"></i></a>
-                    <ul class="dropdown-menu" role="menu">
-                        <li><a href="#">Action</a>
-                        </li>
-                        <li><a href="#">Another action</a>
-                        </li>
-                        <li><a href="#">Something else here</a>
-                        </li>
-                        <li class="divider"></li>
-                        <li><a href="#">Separated link</a>
-                        </li>
-                    </ul>
-                </li>
-                <li class="dropdown col-xs-3 col-sm-1 pull-right">
-                    <a href="#/" class="dropdown-toggle" role="button" aria-expanded="false"><i class="fa fa-search"></i></a>
-                    <form class="dropdown-menu" role="menu">
-                        <div class="form-group">
-                            <input class="form-control" type="text" />
-                        </div>
-                    </form>
-                </li>
-                <li class="col-xs-3 col-sm-1 pull-right"><a href="#"><i class="fa fa-comment"></i></a>
-                </li>
-            </ul>
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#other">
+                    <span class="sr-only">Toggle navigation</span>
+                    <i class="fa fa-bars"></i>
+                </button>
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#search">
+                    <span class="sr-only">Toggle navigation</span>
+                    <i class="fa fa-search"></i>
+                </button>
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#chat">
+                    <span class="sr-only">Toggle navigation</span>
+                    <i class="fa fa-comment"></i>
+                </button>
+                <a class="navbar-brand no-padding" href="#/"><img class="img img-brand" src="images/rtwwhite.png" />
+                </a>
+            </div>
+            <div class="collapse navbar-collapse" id="chat">
+                <p>Chat stuff</p>
+            </div>
+            <div class="collapse navbar-collapse" id="search">
+                <form class="nav navbar-nav" role="menu">
+                    <div class="form-group">
+                        <input class="form-control" type="text" />
+                    </div>
+                    <div class="form-group">
+                        <input class="btn btn-default btn-block" type="submit" value="Submit" />
+                    </div>
+                </form>
+            </div>
+            <div class="collapse navbar-collapse" id="other">
+                <ul class="nav navbar-nav" role="menu">
+                    <li><a href="#">Latest</a>
+                    </li>
+                    <li><a href="#">Badges</a>
+                    </li>
+                    <li><a href="#">Keyboard Shortcuts</a>
+                    </li>
+                    <li><a href="#">FAQ</a>
+                    </li>
+                    <li><a href="#/about">About</a>
+                    </li>
+                    <li class="divider"></li>
+                    <li><a href="#/about">Categories</a>
+                    </li>
+                </ul>
+            </div>
             <!-- /.navbar-collapse -->
         </div>
         <!-- /.container-fluid -->
     </nav>
 
     <div class="container">
-        <div ng-view=""></div>
+        <div ng-view="" class="col-xs-12 pad-top"></div>
     </div>
 
     <!-- build:js(.) scripts/vendor.js -->
@@ -92,7 +108,10 @@
     <script src="scripts/services/factorybadge.js"></script>
     <script src="scripts/services/factorynotification.js"></script>
     <script src="scripts/services/factoryprivatemessage.js"></script>
+    <script src="scripts/services/serveraddress.js"></script>
+    <script src="scripts/controllers/topic.js"></script>
     <!-- endbuild -->
+    <script src="cordova.js"></script>
 </body>
 
 </html>
