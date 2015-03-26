@@ -1,3 +1,7 @@
 .pad-top {
     padding-top: 75px;
 }
+
+.overflow-limit {
+    word-wrap: break-word;
+}

@@ -12,8 +12,8 @@ angular.module('tekForumApp')
 
         // Public API here
         return {
-            get: function () {
-                return $http.get(ServerAddress + 'top.json');
+            get: function (id) {
+                return $http.get(ServerAddress + 't/' + id + '.json');
             },
             getLatest: function () {
                 return $http.get(ServerAddress + 'latest.json')

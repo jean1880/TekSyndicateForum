@@ -18,6 +18,7 @@
     <link rel="stylesheet" href="styles/navbar.css">
     <link rel="stylesheet" href="styles/main.css">
     <!-- endbuild -->
+    <script src="cordova.js"></script>
 </head>
 
 <body ng-app="tekForumApp">
@@ -59,18 +60,18 @@
             </div>
             <div class="collapse navbar-collapse" id="other">
                 <ul class="nav navbar-nav" role="menu">
-                    <li><a href="#">Latest</a>
+                    <li><a href="#" class="local">Latest</a>
                     </li>
-                    <li><a href="#">Badges</a>
+                    <li><a href="#" class="local">Badges</a>
                     </li>
-                    <li><a href="#">Keyboard Shortcuts</a>
+                    <li><a href="#" class="local">Keyboard Shortcuts</a>
                     </li>
-                    <li><a href="#">FAQ</a>
+                    <li><a href="#" class="local">FAQ</a>
                     </li>
-                    <li><a href="#/about">About</a>
+                    <li><a href="#/about" class="local">About</a>
                     </li>
                     <li class="divider"></li>
-                    <li><a href="#/about">Categories</a>
+                    <li><a href="#/about" class="local">Categories</a>
                     </li>
                 </ul>
             </div>
@@ -94,8 +95,10 @@
     <script src="bower_components/angular-route/angular-route.js"></script>
     <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
     <script src="bower_components/angular-touch/angular-touch.js"></script>
+    <script src="bower_components/angular-local-storage/dist/angular-local-storage.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
+
 
     <!-- build:js({.tmp,app}) scripts/scripts.js -->
     <script src="scripts/app.js"></script>
@@ -110,8 +113,10 @@
     <script src="scripts/services/factoryprivatemessage.js"></script>
     <script src="scripts/services/serveraddress.js"></script>
     <script src="scripts/controllers/topic.js"></script>
+    <script src="scripts/filters/sanitize.js"></script>
+    <script src="scripts/custom/aLinkFix.js" type="application/javascript"></script>
     <!-- endbuild -->
-    <script src="cordova.js"></script>
+
 </body>
 
 </html>

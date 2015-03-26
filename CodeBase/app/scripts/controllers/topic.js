@@ -8,10 +8,14 @@
  * Controller of the tekForumApp
  */
 angular.module('tekForumApp')
-  .controller('TopicCtrl', function ($scope) {
-    $scope.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
-    ];
-  });
+    .controller('TopicCtrl', function ($scope, $routeParams, FactoryTopic) {
+        $scope.init = function () {
+            FactoryTopic.get($routeParams.id).success(function (data) {
+                $scope.topic = data;
+
+                console.log(data);
+            });
+        };
+
+        $scope.init();
+    });

@@ -15,9 +15,10 @@ angular
     'ngResource',
     'ngRoute',
     'ngSanitize',
-    'ngTouch'
+    'ngTouch',
+    'LocalStorageModule'
   ])
-    .config(function ($routeProvider) {
+    .config(function ($routeProvider, localStorageServiceProvider) {
         $routeProvider
             .when('/', {
                 templateUrl: 'views/main.html',
@@ -27,11 +28,12 @@ angular
                 templateUrl: 'views/about.html',
                 controller: 'AboutCtrl'
             })
-            .when('/Topic', {
-              templateUrl: 'views/topic.html',
-              controller: 'TopicCtrl'
+            .when('/topic/:id', {
+                templateUrl: 'views/topic.html',
+                controller: 'TopicCtrl'
             })
             .otherwise({
                 redirectTo: '/'
             });
+        localStorageServiceProvider.setPrefix('TekForum');
     });

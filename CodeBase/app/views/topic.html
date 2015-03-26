@@ -1,1 +1,6 @@
-<p>This is the Topic view.</p>
+<h4>{{topic.title}}</h4>
+<ul class="list-group">
+    <li class="list-group-item" ng-if="topic" ng-repeat="post in topic.post_stream.posts">
+        <div class="overflow-limit" ng-bind-html="post.cooked | Sanitize"></div>
+    </li>
+</ul>

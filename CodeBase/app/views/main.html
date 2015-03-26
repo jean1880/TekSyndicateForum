@@ -9,7 +9,7 @@
             <div class="panel-body">
                 <ul class="list-group">
                     <li class="list-group-item" ng-if="categoryList" ng-repeat="category in categoryList">
-                        <a href="{{category.topic_url}}">
+                        <a href="{{category.topic_url}}" class="local">
                             <h4>{{category.name}}</h4>
                             <p>{{category.description_text}}</p>
                         </a>
@@ -27,7 +27,7 @@
         <div id="collapseLatst" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
             <ul class="list-group">
                 <li class="list-group-item" ng-if="topicList" ng-repeat="topic in topicList">
-                    <a href="{{category.topic_url}}">
+                    <a href="#/topic/{{topic.id}}" class="local">
                         <h4>{{topic.title}}</h4>
                         <p>{{topic.excerpt}}</p>
                     </a>
