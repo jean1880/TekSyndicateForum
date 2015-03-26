@@ -8,7 +8,7 @@
  * Controller of the tekForumApp
  */
 angular.module('tekForumApp')
-    .controller('TopicCtrl', function ($scope, $routeParams, FactoryTopic) {
+    .controller('TopicCtrl', function ($scope, $routeParams, FactoryTopic, $timeout) {
         $scope.init = function () {
             FactoryTopic.get($routeParams.id).success(function (data) {
                 $scope.topic = data;
@@ -20,12 +20,14 @@ angular.module('tekForumApp')
         };
 
         $scope.FormatImages = function () {
-            $('#topic-board').find('img').each(function () {
-                $(this).addClass('img img-responsive');
-                if (!$(this).attr('src').match('^http')) {
-                    $(this).attr('src', 'https://' + $(this).attr('src'));
-                }
-            });
+            $timeout(function () {
+                $('#topic-board').find('img').each(function () {
+                    $(this).addClass('img img-responsive');
+                    if (!$(this).attr('src').match('^http')) {
+                        $(this).attr('src', 'https://' + $(this).attr('src'));
+                    }
+                })
+            }, 300);
         };
         // called when nearing bottom of the page, looks for more posts, if available
         $scope.FetchPosts = function () {
