@@ -8,7 +8,7 @@
  * Controller of the tekForumApp
  */
 angular.module('tekForumApp')
-    .controller('MainCtrl', function ($scope, FactoryCategory, FactoryTopic, $cookies, localStorageService) {
+    .controller('MainCtrl', function ($scope, FactoryCategory, FactoryTopic, $cookies, localStorageService, $routeParams) {
         /**
          * Loads the categories from the database to be renddered to the page
          * @method GetCategories
@@ -26,11 +26,19 @@ angular.module('tekForumApp')
          * @method GetTopics
          **/
         $scope.GetTopics = function () {
-            FactoryTopic.getLatest().success(function (Data) {
-                console.log(Data);
-                $scope.topicList = Data.topic_list.topics;
-                localStorageService.set('topicList', JSON.stringify(Data.topic_list.topics));
-            });
+            if ($routeParams.id) {
+                FactoryTopic.getLatestCategory($routeParams.id).success(function (Data) {
+                    console.log(Data);
+                    $scope.topicList = Data.topic_list.topics;
+                });
+
+            } else {
+                FactoryTopic.getLatest().success(function (Data) {
+                    console.log(Data);
+                    $scope.topicList = Data.topic_list.topics;
+                    localStorageService.set('topicList', JSON.stringify(Data.topic_list.topics));
+                });
+            }
         };
 
         /**
