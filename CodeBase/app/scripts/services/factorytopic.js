@@ -20,6 +20,9 @@ angular.module('tekForumApp')
             },
             getLatestCategory: function (id) {
                 return $http.get(ServerAddress + '/c/' + id + '/l/latest.json')
+            },
+            getPosts: function (id, request) {
+                return $http.get(ServerAddress + "t/" + id + "/posts.json?" + request);
             }
         };
     });
