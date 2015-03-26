@@ -8,16 +8,11 @@
  * Factory in the tekForumApp.
  */
 angular.module('tekForumApp')
-  .factory('FactoryPost', function () {
-    // Service logic
-    // ...
-
-    var meaningOfLife = 42;
-
-    // Public API here
-    return {
-      someMethod: function () {
-        return meaningOfLife;
-      }
-    };
-  });
+    .factory('FactoryPost', function ($http, ServerAddress) {
+        // Public API here
+        return {
+            get: function (post_current) {
+                return $http.get(ServerAddress + "posts.json?after=" + post_current);
+            }
+        };
+    });
