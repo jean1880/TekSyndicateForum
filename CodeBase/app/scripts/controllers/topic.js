@@ -19,15 +19,24 @@ angular.module('tekForumApp')
             });
         };
 
+        // parses through post images and rebuilds relative pathing to static pathing on remote serve
         $scope.FormatImages = function () {
             $timeout(function () {
+                // find all images in the posts
                 $('#topic-board').find('img').each(function () {
+                    // add bootstrap classes to the images
                     $(this).addClass('img img-responsive');
+
+                    // if image path is not fixed, correct image path to a fixed path
                     if (!$(this).attr('src').match('^http')) {
-                        $(this).attr('src', 'https://' + $(this).attr('src'));
+                        if ($(this).attr('src').match('^/user_avatar') || $(this).attr('src').match('^/images')) {
+                            $(this).attr('src', 'https://forum.teksyndicate.com' + $(this).attr('src'));
+                        } else {
+                            $(this).attr('src', 'http://' + $(this).attr('src'));
+                        }
                     }
                 })
-            }, 300);
+            }, 400);
         };
         // called when nearing bottom of the page, looks for more posts, if available
         $scope.FetchPosts = function () {
