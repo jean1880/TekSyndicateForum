@@ -11,8 +11,6 @@
 angular.module('tekForumApp')
     .filter('moment', function () {
         return function (input) {
-            console.log(input);
-            console.log(moment(input).fromNow());
             return moment(input).fromNow();
         };
     });

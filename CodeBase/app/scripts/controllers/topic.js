@@ -43,12 +43,13 @@ angular.module('tekForumApp')
                 // lazyload youtube
                 $('.lazyYT').lazyYT();
                 $('.lazyYT').addClass('img img-responsive');
-            }, 400);
+            }, 450);
         };
         // called when nearing bottom of the page, looks for more posts, if available
         $scope.FetchPosts = function () {
             if ($scope.postCount < $scope.MAXPOSTCOUNT) {
-                var request, requestAttach = '';
+                var request = '',
+                    requestAttach = '';
                 // build array of post ids to fetch
                 for (var i = 0; i < 20; i++) {
                     // if target id exists push into fetch array, otherwise exit loop

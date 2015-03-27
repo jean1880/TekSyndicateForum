@@ -83,9 +83,11 @@ angular.module('tekForumApp')
          **/
         $scope.init = function () {
             $cookies['XSRF-TOKEN'] = 'M8JjiA4/pV6L2pR94qd4BQMoaCmLXsmgLks7xdNd+HA=';
-            // if available, load the categories and topics from local storage, to quickly render results to user before rebuilding from data on server
-            $scope.categoryList = localStorageService.get('categoryList');
-            $scope.topicList = localStorageService.get('topicList') || [];
+            // if not a category and available, load the categories and topics from local storage, to quickly render results to user before rebuilding from data on server
+            if (!$routeParams.id) {
+                $scope.categoryList = localStorageService.get('categoryList');
+                $scope.topicList = localStorageService.get('topicList') || [];
+            }
             $scope.page = 1;
 
             // get updated categories and topics from the server
