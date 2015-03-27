@@ -28,15 +28,51 @@ angular.module('tekForumApp')
         $scope.GetTopics = function () {
             if ($routeParams.id) {
                 FactoryTopic.getLatestCategory($routeParams.id).success(function (Data) {
-                    console.log(Data);
-                    $scope.topicList = Data.topic_list.topics;
+                    $scope.UpdateTopics(Data, null, true);
                 });
 
             } else {
                 FactoryTopic.getLatest().success(function (Data) {
-                    console.log(Data);
-                    $scope.topicList = Data.topic_list.topics;
-                    localStorageService.set('topicList', JSON.stringify(Data.topic_list.topics));
+                    $scope.UpdateTopics(Data, localStorageService, true);
+                });
+            }
+        };
+
+        /**
+         * Updates the topic list on the page
+         * @method UpdateTopics
+         **/
+        $scope.UpdateTopics = function (Data, storage, refresh) {
+            console.log(Data);
+            console.log($scope.page);
+
+            // if refreshing data, rebuild array
+            if (refresh) {
+                $scope.page = 1;
+                $scope.topicList = Data.topic_list.topics;
+            } else {
+                $scope.topicList.push.apply($scope.topicList, Data.topic_list.topics);
+            }
+            if (storage) {
+                storage.set('topicList', JSON.stringify(Data.topic_list.topics));
+            }
+
+        };
+
+        /**
+         * Fetches next page of topics
+         * @method FetchTopics
+         **/
+        $scope.FetchTopics = function () {
+            $scope.page++;
+            if ($routeParams.id) {
+                FactoryTopic.getLatestCategory($routeParams.id, $scope.page).success(function (Data) {
+                    $scope.UpdateTopics(Data);
+                });
+
+            } else {
+                FactoryTopic.getLatest($scope.page).success(function (Data) {
+                    $scope.UpdateTopics(Data);
                 });
             }
         };
@@ -49,7 +85,8 @@ angular.module('tekForumApp')
             $cookies['XSRF-TOKEN'] = 'M8JjiA4/pV6L2pR94qd4BQMoaCmLXsmgLks7xdNd+HA=';
             // if available, load the categories and topics from local storage, to quickly render results to user before rebuilding from data on server
             $scope.categoryList = localStorageService.get('categoryList');
-            $scope.topicList = localStorageService.get('topicList');
+            $scope.topicList = localStorageService.get('topicList') || [];
+            $scope.page = 1;
 
             // get updated categories and topics from the server
             $scope.GetCategories();
