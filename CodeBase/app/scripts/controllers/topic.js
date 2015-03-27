@@ -22,8 +22,9 @@ angular.module('tekForumApp')
         // parses through post images and rebuilds relative pathing to static pathing on remote serve
         $scope.FormatImages = function () {
             $timeout(function () {
+
                 // find all images in the posts
-                $('#topic-board').find('img').each(function () {
+                $('#topic-board').find('img, iframe').each(function () {
                     // add bootstrap classes to the images
                     $(this).addClass('img img-responsive');
 
@@ -35,7 +36,13 @@ angular.module('tekForumApp')
                             $(this).attr('src', 'http://' + $(this).attr('src'));
                         }
                     }
-                })
+
+                });
+
+
+                // lazyload youtube
+                $('.lazyYT').lazyYT();
+                $('.lazyYT').addClass('img img-responsive');
             }, 400);
         };
         // called when nearing bottom of the page, looks for more posts, if available
@@ -49,7 +56,9 @@ angular.module('tekForumApp')
                         if (i == 1) {
                             requestAttach = '&';
                         }
-                        request = request + requestAttach + 'post_ids%5B%5D=' + $scope.topic.post_stream.stream[i + $scope.postCount];
+                        request = request +
+                            requestAttach + 'post_ids%5B%5D=' +
+                            $scope.topic.post_stream.stream[i + $scope.postCount];
                     } else {
                         break;
                     }
